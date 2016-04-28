@@ -6,6 +6,7 @@
 # Set selinux to permissive mode
 echo "Setting selinux to permissive"
 yes | cp -rf centos7Config/selinux /etc/sysconfig/selinux
+setsebool httpd_can_network_connect on -P
 # Update machine
 echo "Running updates"
 yum -y update
@@ -21,6 +22,7 @@ yes | cp -rf centos7Config/nginx.conf /etc/nginx/nginx.conf
 #Start nginx
 echo "Starting nginx"
 systemctl start nginx
+nginx -s reload
 # Place Docker repo
 echo "Adding docker repo"
 yes | cp -rf centos7Config/docker.repo /etc/yum.repos.d/docker.repo
