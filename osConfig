@@ -32,4 +32,4 @@ echo "Starting Docker"
 service docker start
 # Pull container
 echo "Pulling app container from Docker Hub"
-docker run bfilia/qapp
+docker run -p 3000:3000 -d --name qrun bfilia/qapp
