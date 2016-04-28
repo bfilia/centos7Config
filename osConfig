@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This script updates and configures a fresh install of Centos 7
+# Make sure this script can run by typing "chmod 700 osConfig"
+
+# Update machine
+echo "Running updates"
+yum -y update
+# Get epel
+echo "Installing epel"
+yum install -y epel-release
+# Install nginx
+echo "Installing nginx"
+yum install -y nginx
+# Place nginx config file
+echo "Overwriting old nginx.conf"
+cp centos7Config/nginx.conf /etc/nginx/nginx.conf
+#Start nginx
+systemctl start nginx
+# Place Docker repo
+echo "Adding docker repo"
+cp awsConfig/docker.repo /etc/yum.repos.d/docker.repo
+#Install Docker
+echo "Installing Docker"
+yum install -y docker-engine
+# Start Docker
+echo "Starting Docker"
+service docker start
+# Pull container
+echo "Pulling app container from Docker Hub"
+# TODO docker run <container>
