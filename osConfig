@@ -5,7 +5,7 @@
 
 # Set selinux to permissive mode
 echo "Setting selinux to permissive"
-yes | cp -rf selinux /etc/sysconfig/selinux
+yes | cp -rf centos7Config/selinux /etc/sysconfig/selinux
 # Update machine
 echo "Running updates"
 yum -y update
@@ -23,7 +23,7 @@ echo "Starting nginx"
 systemctl start nginx
 # Place Docker repo
 echo "Adding docker repo"
-yes | cp -rf awsConfig/docker.repo /etc/yum.repos.d/docker.repo
+yes | cp -rf centos7Config/docker.repo /etc/yum.repos.d/docker.repo
 #Install Docker
 echo "Installing Docker"
 yum install -y docker-engine
